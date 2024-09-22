@@ -1,42 +1,34 @@
 pipeline {
-    tools {
-        maven 'MAVEN'
-    }
     agent any
-
+    tools {
+        maven 'Maven'
+    }
     stages {
-
-
         stage('Checkout') {
             steps {
-                git 'https://github.com/Jafestro/Time_Calculator.git'
+                git branch: 'main', url: 'https://github.com/Jafestro/Time_Calculator'
             }
         }
-
         stage('Build') {
             steps {
                 sh 'mvn clean install'
             }
         }
-
         stage('Test') {
             steps {
                 sh 'mvn test'
             }
         }
-
         stage('Code Coverage') {
             steps {
-                jacoco execPattern: '**/target/jacoco.exec'
+                jacoco execPattern: '/target/jacoco.exec'
             }
         }
     }
-
     post {
         always {
-            junit '**/target/surefire-reports/*.xml'
+            junit '/target/surefire-reports/*.xml'
             jacoco execPattern: '**/target/jacoco.exec'
         }
     }
 }
-
