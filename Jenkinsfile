@@ -21,13 +21,13 @@ pipeline {
         }
         stage('Code Coverage') {
             steps {
-                jacoco execPattern: '/target/jacoco.exec'
+                jacoco execPattern: '**/target/jacoco.exec'
             }
         }
     }
     post {
         always {
-            junit '/target/surefire-reports/*.xml'
+            junit '**/target/surefire-reports/*.xml'
             jacoco execPattern: '**/target/jacoco.exec'
         }
     }
