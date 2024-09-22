@@ -1,7 +1,12 @@
 pipeline {
+    tools {
+        maven 'MAVEN'
+    }
     agent any
 
     stages {
+
+
         stage('Checkout') {
             steps {
                 git 'https://github.com/Jafestro/Time_Calculator.git'
