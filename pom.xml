@@ -58,9 +58,28 @@
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <mainClass>com.jafestro.TimeCalculator</mainClass> <!-- Replace with your main class -->
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
 
+            <!-- Maven JAR Plugin to set Main-Class in manifest -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version> <!-- Adjust version if needed -->
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.jafestro.TimeCalculator</mainClass> <!-- Replace with your main class -->
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
 
         </plugins>
 
